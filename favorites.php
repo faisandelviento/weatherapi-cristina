@@ -8,6 +8,10 @@ if (isset($_POST['addFavorite'])) {
     addFavorite();
 }
 
+if (isset($_POST['addChart'])) {
+    addChart();
+}
+
 if (isset($_POST['uploadPhoto'])) {
     storePhoto();
 }
@@ -24,7 +28,7 @@ function getPhotos(){
 
         $dbservername = "localhost";
         $dbusername = "root";
-        $dbpassword = "claumestra";
+        $dbpassword = "password";
         $dbname = "weatherapp";
 
         $conn = new mysqli($dbservername, $dbusername, $dbpassword, $dbname);
@@ -59,7 +63,7 @@ function storePhoto()
 
         $dbservername = "localhost";
         $dbusername = "root";
-        $dbpassword = "claumestra";
+        $dbpassword = "password";
         $dbname = "weatherapp";
 
         $conn = new mysqli($dbservername, $dbusername, $dbpassword, $dbname);
@@ -85,7 +89,6 @@ function storePhoto()
     }
 }
 
-
 function getFavorite()
 {
     try {
@@ -94,7 +97,7 @@ function getFavorite()
 
         $dbservername = "localhost";
         $dbusername = "root";
-        $dbpassword = "claumestra";
+        $dbpassword = "password";
         $dbname = "weatherapp";
 
         $conn = new mysqli($dbservername, $dbusername, $dbpassword, $dbname);
@@ -127,7 +130,7 @@ function addFavorite()
 
         $dbservername = "localhost";
         $dbusername = "root";
-        $dbpassword = "claumestra";
+        $dbpassword = "password";
         $dbname = "weatherapp";
 
         $conn = new mysqli($dbservername, $dbusername, $dbpassword, $dbname);
@@ -152,4 +155,35 @@ function addFavorite()
     }
 }
 
+function addChart()
+{
+    try {
+        session_start();
+        $user = $_SESSION['user'];
+        $options = $_POST['options'];
 
+        $dbservername = "localhost";
+        $dbusername = "root";
+        $dbpassword = "password";
+        $dbname = "weatherapp";
+
+        $conn = new mysqli($dbservername, $dbusername, $dbpassword, $dbname);
+        $sql = "SELECT id FROM user WHERE name= '" . $user . "';";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            $id = $result->fetch_assoc()["id"];
+        }
+
+        //insertamos las opciones del chart
+        $sql = 'INSERT INTO favoriteChart(options,user) VALUES("' . $options . '",' . $id . ');';
+        $result = $conn->query($sql);
+
+        echo "1";
+    } catch (Exception $e) {
+        $errores = "Error, no se pudo insertar: <br> " . $e->getMessage();
+        echo $errores;
+    } finally {
+        $conn->close();
+    }
+}

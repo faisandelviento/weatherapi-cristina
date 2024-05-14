@@ -344,7 +344,7 @@
                         </div>
                         <div id="contenedorGrafico" style="display: none;">
                             <canvas id="myChart" style="max-height: 200px;">AQUÍ VA EL GRÁFICO</canvas>
-                            <button class= "btn btn-outline-secondary">Save Chart</button>
+                            <button id="saveChartButton" class= "btn btn-outline-secondary">Save Chart</button>
                         </div>
                     </div>
                 </div>

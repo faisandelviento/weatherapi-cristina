@@ -47,6 +47,7 @@ function addFavorite(favorite) {
         .catch((error) => { console.log(error) })
 }
 
+
 function refreshFavorites(favorites) {
     // Borrar favoritos actuales
     let favoritesList = document.querySelectorAll('.favorites-list')[0]

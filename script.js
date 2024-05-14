@@ -3,7 +3,7 @@ import { fetchMeteo } from "./scripts/meteoApi.js"
 import { updateDashboard, updateSuggestions, setUserDashboard } from "./scripts/dashboards.js"
 import { requestLogin, requestLogout, checkLogin, loggedIn } from "./scripts/login.js"
 import { addFavorite, requestUploadPhoto, refreshPhotos } from "./scripts/favorites.js"
-import { CreateChart, showGrafico} from "./scripts/grafics.js"
+import { CreateChart, addfavouriteChart, showGrafico} from "./scripts/grafics.js"
 
 let targetLocation = null
 
@@ -18,7 +18,9 @@ window.onload = () => {
     document.querySelector('#uploadPhotoModal').addEventListener('show.bs.modal',uploadPhotoModalShow)
     document.querySelector('.button-upload-photo').addEventListener('click', requestUploadPhoto)
     document.querySelector('.show-photo-button').addEventListener('click', showOffcanvas)
+    //boton para esconder o enseñar el grafico
     document.querySelector('#flexSwitchCheckDefault').addEventListener('change', showGrafico)
+    document.querySelector('#saveChartButton').addEventListener('click', addfavouriteChart)
 
     //Load default data
     let result = setUserDashboard()

@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
  CREATE TABLE `favoriteChart` (
    `id` int NOT NULL,
    `options` text DEFAULT NULL,
-    `user` int DEFAULT NULL
+   `user` int DEFAULT NULL
  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -111,6 +111,14 @@ ALTER TABLE `favorite`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `favoriteChart`
+--
+
+ALTER TABLE `favoriteChart`
+  ADD PRIMARY KEY (`id`);
+
+
+--
 -- Indices de la tabla `photo`
 --
 ALTER TABLE `photo`
@@ -131,6 +139,13 @@ ALTER TABLE `user`
 --
 ALTER TABLE `favorite`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT de la tabla `favoriteChart`
+--
+ALTER TABLE `favoriteChart`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 
 --
 -- AUTO_INCREMENT de la tabla `photo`
