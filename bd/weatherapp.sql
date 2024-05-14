@@ -24,28 +24,37 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `favoriteChart`
+--
+ CREATE TABLE `favoriteChart` (
+   `id` int NOT NULL,
+   `options` text DEFAULT NULL,
+    `user` int DEFAULT NULL
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
 -- Estructura de tabla para la tabla `favorite`
 --
 
-CREATE TABLE `favorite` (
-  `id` int NOT NULL,
-  `name` varchar(100) DEFAULT NULL,
-  `lat` float DEFAULT NULL,
-  `lon` float DEFAULT NULL,
+ CREATE TABLE `favorite` (
+   `id` int NOT NULL,
+   `name` varchar(100) DEFAULT NULL,
+   `lat` float DEFAULT NULL,
+   `lon` float DEFAULT NULL,
   `user` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `favorite`
 --
 
-INSERT INTO `favorite` (`id`, `name`, `lat`, `lon`, `user`) VALUES
-(3, 'La Seu d\'Urgell, Catalonia, Spain', 42.3588, 1.46144, 1),
-(4, 'Manacor, Balearic Islands, Spain', 39.5696, 3.20955, 1),
-(5, 'Lleida, Catalonia, Spain', 41.6167, 0.62218, 1),
-(6, 'Yakutsk, Russia', 62.0339, 129.733, 1),
-(7, 'Barcelona, Catalonia, Spain', 41.3888, 2.159, 1),
-(8, 'Rubí, Catalonia, Spain', 41.4923, 2.03305, 1);
+ INSERT INTO `favorite` (`id`, `name`, `lat`, `lon`, `user`) VALUES
+ (3, 'La Seu d\Urgell, Catalonia, Spain', 42.3588, 1.46144, 1),
+ (4, 'Manacor, Balearic Islands, Spain', 39.5696, 3.20955, 1),
+ (5, 'Lleida, Catalonia, Spain', 41.6167, 0.62218, 1),
+ (6, 'Yakutsk, Russia', 62.0339, 129.733, 1),
+ (7, 'Barcelona, Catalonia, Spain', 41.3888, 2.159, 1),
+ (8, 'Rubí, Catalonia, Spain', 41.4923, 2.03305, 1);
 
 -- --------------------------------------------------------
 
@@ -58,7 +67,7 @@ CREATE TABLE `photo` (
   `user` int DEFAULT NULL,
   `location` varchar(100) DEFAULT NULL,
   `url` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `photo`
@@ -81,7 +90,7 @@ CREATE TABLE `user` (
   `id` int NOT NULL,
   `name` varchar(50) DEFAULT NULL,
   `password` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `user`

@@ -1,5 +1,4 @@
 
-
   const getOPcionesChart = (temperaturas, horas) => {
     //cambia el color de los puntos, si la temperatura es mas de 22:rojo, menos de 13 azul, entremedio naranja
     const borderColorArray = temperaturas.map(temp => {
@@ -51,6 +50,13 @@ function CreateChart(hourly){
   const horas = fecha.map(str => str.slice(11, 16));
   //get el div donde va el chart
   const ctx = document.getElementById('myChart')
+  
+  //borrar el content that is inside myChart 
+  let chartExistente = Chart.getChart(ctx);
+  if (chartExistente) {
+    chartExistente.destroy(); 
+  }
+
   //pasamos los datos al chart
   const opcionesChart= getOPcionesChart(temperaturas, horas);
   //creamos chart
@@ -65,7 +71,6 @@ function showGrafico(e){
     cards.className = '';
     chart.style.display = 'block';
   } else {
-    // Si el checkbox no está marcado, oculta el div de la gráfica
     chart.style.display = 'none';
     cards.className = 'card-briefing container-fluid d-flex flex-row gap-2 flex-wrap justify-content-between w-100';
     cards.style.display = 'block';
