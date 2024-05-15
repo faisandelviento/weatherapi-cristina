@@ -1,26 +1,29 @@
-//funcion para añadir un chart a favoritos
-function addfavouriteChart(chart) {
-  console.log("Adding new favorite chart...")
+//variable global para guardar los datos que devuelve la API
+window.variableGlobal = null;
 
-  const formData = new URLSearchParams();
-  formData.append('addChart', true);
-  formData.append('options', chart.options)
+function addfavouriteChart() {
+  let { temperaturas, horas } = CleanData(window.variableGlobal);
+  let temperaturaForDB = String(temperaturas);
+  console.log("Print Temperatura BD");
+  console.log(temperaturaForDB);
 
-  const options = {
-      method: 'POST',
-      body: formData
-  };
-  fetch("./favorites.php", options)
-      .then((response) => {
-          return response.json()
-      })
-      .then((response) => {
-          console.log("desde la funcion addchart "+response)
-      })
-      .catch((error) => { console.log(error) })
-    }
+   console.log("Adding new favorite chart...")
+   const formData = new URLSearchParams();
+   formData.append('addChart', true);
+   formData.append('options', temperaturaForDB)
 
+   const options = {
+       method: 'POST',
+       body: formData
+   };
+   fetch("./favorites.php", options)
+       .then((response) => {
+           return response.text()
+       })
+        .catch((error) => { console.log(error) })
+}
 
+//crea la configuracion del grafico con los datos de la API correspondientes 
 const getOPcionesChart = (temperaturas, horas) => {
     //cambia el color de los puntos, si la temperatura es mas de 22:rojo, menos de 13 azul, entremedio naranja
     const borderColorArray = temperaturas.map(temp => {
@@ -66,10 +69,7 @@ const getOPcionesChart = (temperaturas, horas) => {
 
 function CreateChart(hourly){
   //de los datos de la api necesitamos la temperatura y hora del primer dia (las 23 primeras posiciones)
-  const temperaturas = hourly.temperature_2m.slice(0,23);
-  const fecha = hourly.time.slice(0,23);
-  //limpiamos la fecha para que solo sean las horas
-  const horas = fecha.map(str => str.slice(11, 16));
+  const { temperaturas, horas } = CleanData(hourly);
   //get el div donde va el chart
   const ctx = document.getElementById('myChart')
   
@@ -78,12 +78,20 @@ function CreateChart(hourly){
   if (chartExistente) {
     chartExistente.destroy(); 
   }
-
   //pasamos los datos al chart (esto es la configuracion del grafico)
   const opcionesChart= getOPcionesChart(temperaturas, horas);
   //creamos chart
   new Chart(ctx, opcionesChart)
 };
+
+//Limpia los datos 
+function CleanData(hourly) {
+  const temperaturas = hourly.temperature_2m.slice(0, 23);
+  const fecha = hourly.time.slice(0, 23);
+  //limpiamos la fecha para que solo sean las horas
+  const horas = fecha.map(str => str.slice(11, 16));
+  return { temperaturas, horas };
+}
 
 function showGrafico(e){
   //modificamos el css para esconder o enseñar los divs

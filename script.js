@@ -20,13 +20,14 @@ window.onload = () => {
     document.querySelector('.show-photo-button').addEventListener('click', showOffcanvas)
     //boton para esconder o enseñar el grafico
     document.querySelector('#flexSwitchCheckDefault').addEventListener('change', showGrafico)
+    //boton para guardar el grafico
     document.querySelector('#saveChartButton').addEventListener('click', addfavouriteChart)
 
     //Load default data
     let result = setUserDashboard()
 
     targetLocation = defaultLocation
-    setInterval(refreshDashboard(targetLocation), 5000)
+    setInterval(refreshDashboard(targetLocation), 5000)    
 }
 
 function showOffcanvas(event){
@@ -110,6 +111,8 @@ function refreshDashboard(location) {
     fetchMeteo(location)
         .then(response => response.json())
         .then(((data) => {
+            console.log(data)
+            window.variableGlobal = data.hourly;
             CreateChart(data.hourly) 
             updateDashboard(data, location)
         }))

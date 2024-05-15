@@ -16,9 +16,11 @@ explicacion de las funcionalidades:
             cada funcion de este archivo esta muy comentada
         )
     Añadir grafico a favoritos:
-    -se ha añadido un boton 'save chart' que al clicarlo guarda los datos de configuración del grafico en la base de datos
-    Para esta fucnionalidad se ha modificado:
+    -se ha añadido un boton 'save chart' que guarda los datos del grafico
+    Para esto se ha guardado un string de las temperaturas, lo que se podria utilizar posteriormente para 
+    volver a general el grafico.
+    Para esta funcionalidad se ha modificado:
         - base de datos(añadido tabla 'favoriteChart')
-        - script (listener en boton 'save chart' )
-        -scripts/grafics.js (funcion addfavouriteCHart  que guarda los parametros y hace un fetchh en le controlador /favorites)
-        -favorites.php (añadimos opcion addChart que ejecuta funcion para hacer los inserts en la BD)
+        - script (listener en boton 'save chart')
+        - scripts/grafics.js (funcion addfavouriteChart prepara los datos para hacer un fetch en el controlador /favorites.php)
+        - favorites.php (añadimos opcion addChart que ejecuta funcion addCHart() para hacer los inserts en la BD)
